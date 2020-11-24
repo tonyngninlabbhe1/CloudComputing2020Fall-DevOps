@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Database;
 using System;
 
 public class ProductRepository : IProductRepository
@@ -16,7 +15,7 @@ public class ProductRepository : IProductRepository
     {
         try
         {
-            return _dbContext.Product.ToList();
+            return _dbContext.Products.ToList();
         } 
         catch(Exception ex)
         {
@@ -28,12 +27,12 @@ public class ProductRepository : IProductRepository
 
     public Product GetProductById(long productId)
     {
-        return _dbContext.Product.SingleOrDefault(p => p.ProductId == productId);
+        return _dbContext.Products.SingleOrDefault(p => p.ProductId == productId);
     }
 
     public void AddProduct(Product product)
     {
-        _dbContext.Product.Add(product);
+        _dbContext.Products.Add(product);
         _dbContext.SaveChanges();
     }
 
@@ -57,8 +56,8 @@ public class ProductRepository : IProductRepository
     {
         var product = new Product { ProductId = productId };
 
-        _dbContext.Product.Attach(product);
-        _dbContext.Product.Remove(product);
+        _dbContext.Products.Attach(product);
+        _dbContext.Products.Remove(product);
         _dbContext.SaveChanges();
     }
 }
