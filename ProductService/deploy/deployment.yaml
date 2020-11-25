@@ -1,0 +1,32 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: product-svc
+spec:
+  selector:
+    app: product-svc
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: product-svc
+  labels:
+    app: product-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-svc
+  template:
+    metadata:
+      labels:
+        app: product-svc
+    spec:
+      containers:
+      - name: product-svc
+        image: oitgaden/product-service:1.0
