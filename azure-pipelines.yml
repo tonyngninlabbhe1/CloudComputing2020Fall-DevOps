@@ -50,6 +50,6 @@ stages:
         command: buildAndPush
         dockerfile: '$(Build.SourcesDirectory)/ProductService/Dockerfile'
         containerRegistry: 'DockerHub'
-        repository: 'ProductService'
+        repository: 'oitgaden/productservice'
         tags: |
           $(tag)
