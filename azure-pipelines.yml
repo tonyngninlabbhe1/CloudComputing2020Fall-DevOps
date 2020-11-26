@@ -35,7 +35,7 @@ stages:
     - task: DotNetCoreCLI@2
       inputs:
         command: 'test'
-        projects: '**/*.Tests.csproj'
+        projects: '**/*Tests.csproj'
 - stage: Build_Artifact
   displayName: Build container image
   jobs:  
