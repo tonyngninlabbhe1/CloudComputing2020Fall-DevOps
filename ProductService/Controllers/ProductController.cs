@@ -18,7 +18,7 @@ namespace webapi.Controllers
         [HttpGet]
         public ActionResult<List<Product>> GetAllProducts()
         {
-            Console.WriteLine("Getting all products");
+            Console.WriteLine("Getting all products from in memory database");
 
             return Ok(_productService.GetAllProducts());
         }
