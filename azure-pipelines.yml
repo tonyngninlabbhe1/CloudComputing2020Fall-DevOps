@@ -36,8 +36,8 @@ stages:
       inputs:
         command: 'test'
         projects: '**/*.Tests.csproj'
-- stage: Build Image
-  displayName: Build image
+- stage: Build Artifact
+  displayName: Build artifact
   jobs:  
   - job: Build
     displayName: Build
