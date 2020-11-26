@@ -36,11 +36,11 @@ stages:
       inputs:
         command: 'test'
         projects: '**/*.Tests.csproj'
-- stage: Build-Artifact
-  displayName: Build artifact
+- stage: Build_Artifact
+  displayName: Build container image
   jobs:  
-  - job: Build
-    displayName: Build
+  - job: Build_Artifact
+    displayName: Build container image
     pool:
       vmImage: 'ubuntu-latest'
     steps:
