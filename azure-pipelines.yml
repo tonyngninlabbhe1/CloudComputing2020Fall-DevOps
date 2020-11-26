@@ -1,0 +1,56 @@
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Version).$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build projects
+  jobs:  
+  - job: Build
+    displayName: Build projects
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'build'
+        projects: '**/*.csproj'
+- stage: Test
+  displayName: Run unit tests
+  jobs:  
+  - job: Test
+    displayName: Run unit tests
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'test'
+        projects: '**/*Tests.csproj'
+- stage: Build_Push
+  displayName: Build and push container image
+  jobs:  
+  - job: Build_Push
+    displayName: Build and push container image
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        command: buildAndPush
+        dockerfile: '$(Build.SourcesDirectory)/ProductService/Dockerfile'
+        container: 'product-service'
+        containerRegistry: 'DockerHub'
+        repository: 'oitgaden/product-service'
+        tags: |
+          $(tag)
