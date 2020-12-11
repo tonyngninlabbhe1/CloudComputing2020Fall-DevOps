@@ -49,8 +49,8 @@ stages:
       inputs:
         command: buildAndPush
         dockerfile: '$(Build.SourcesDirectory)/ProductService/Dockerfile'
-        container: 'ProductService'
+        container: 'product-service'
         containerRegistry: 'DevOpsLab9'
-        repository: 'tonyngninlabhe1/ProductService'
+        repository: 'tonyngninlabhe1/product-service'
         tags: |
           $(tag)
