@@ -19,9 +19,9 @@ public class DataGenerator
             context.Products.AddRange(
                 new Product
                 {
-                    ProductId = 1,
-                    Name = "Television",
-                    Price = 199.95m,
+                    ProductId = 2,
+                    Name = "PS5",
+                    Price = 899.95m,
                     Count = 4
                 },
                 new Product
